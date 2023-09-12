@@ -1,0 +1,47 @@
+
+
+// const Footer = () => {
+//   const year = new Date();
+//   return (
+//     <footer>
+//        Copyright &copy; {year.getFullYear()}
+//     </footer>
+//   )
+// }
+
+
+
+  
+  
+ 
+
+
+import React from 'react'
+import { useState } from 'react'
+
+const Footer = () => {
+  const [name,setName] = useState('Earn');
+    function changeMywords() {
+      const value = ["Earn","Grow","Give"]
+      const int = Math.floor(Math.random()*3)
+      setName(value[int])
+    }
+
+    
+    
+  
+  return (
+    <main>
+    <h3>Lets {name} Money</h3>
+    <button onClick={changeMywords} >ChangeWord</button>
+    
+    
+
+  </main>
+  )
+}
+
+
+export default Footer
+
+
