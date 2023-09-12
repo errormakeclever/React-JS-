@@ -1,0 +1,70 @@
+import React from 'react'
+import  { useState } from 'react';
+import { FaTrash } from "@react-icons/all-files/fa/FaTrash";
+
+const Content = () => {
+  const [items,setValue] = useState(
+    [
+  {
+    id:1,
+    checked:true,
+    item:"Practice Coding"
+  },
+  {
+    id:2,
+    checked:false,
+    item:"PLay cricket"
+  },
+  {
+    id:3,
+    checked:false,
+    item:"well done"
+  }
+]);
+
+  const handleCheck = (id) => {
+    const listItems = items.map((object) =>
+     object.id === id ? {...object, checked:!object.checked}: object)
+    setValue(listItems)
+    localStorage.setItem("todo-list",JSON.stringify(listItems))
+  }
+  const clickTodelete = (id) => {
+    const deletebtn = items.filter((object) =>
+      object.id !== id
+    ) 
+    setValue(deletebtn)
+    localStorage.setItem("todo-list",JSON.stringify(deletebtn))
+  }
+  return (
+  
+   <main>
+    {(items.length)?(
+     <ul>
+        {items.map((object) => (
+          <li className="item" key={object.id}>
+            <input 
+            type="checkbox"
+            onChange={() => handleCheck(object.id)}
+            checked= {object.checked} />
+            <label 
+            onDoubleClick={() => handleCheck(object.id)}
+
+            >{object.item}</label>
+            <FaTrash 
+            onClick={() => clickTodelete(object.id)}
+            role="button"
+            tabIndex="0"
+            />
+          </li>
+        ))}
+     </ul>
+
+  ):(
+    <p style={{color:"red"}}>The List is Empty</p>
+  )}
+   </main>
+   
+  )
+}
+
+export default Content
